@@ -1,0 +1,11 @@
+#! /bin/bash
+TARGET_BIN_DIRECTORY="$HOME"/bin/
+LINK_HREF_PART="symfony-cli_darwin_all.tar.gz"
+SYMFONY_CLI_LINK=`curl https://symfony.com/download | grep "$LINK_HREF_PART" | sed -r 's/.*href="([^"]+).*/\1/g'`
+# shellcheck disable=SC2164
+mkdir /tmp/symfony-update && cd /tmp/symfony-update
+wget $SYMFONY_CLI_LINK
+tar -xf symfony-cli_darwin_all.tar.gz && rm symfony-cli_darwin_all.tar.gz
+mv symfony "$TARGET_BIN_DIRECTORY"
+cd $HOME && rm -rf cd /tmp/symfony-update
+echo "Выполнено"
